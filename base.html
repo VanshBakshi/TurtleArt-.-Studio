@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}TurtleArt Studio{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"></head>
+<body><div class="wrap"><nav class="nav"><a class="brand" href="{{ url_for('index') }}">TurtleArt<b>.</b>Studio</a><div class="navlinks">{% if logged_user %}<a href="{{ url_for('dashboard') }}">Dashboard</a><a href="{{ url_for('patterns_page') }}">Explore</a><a href="{{ url_for('favorites') }}">Favorites</a><a href="{{ url_for('ai_generate') }}">AI Lab</a><a href="{{ url_for('profile') }}">Hi, {{ logged_user['name'].split()[0] }}</a><a class="btn small secondary" href="{{ url_for('logout') }}">Log out</a>{% else %}<a href="{{ url_for('login') }}">Log in</a><a class="btn small" href="{{ url_for('signup') }}">Get started</a>{% endif %}</div></nav></div>
+{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="wrap">{% for category,message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}
+<div class="wrap"><footer class="footer split"><span>© 2026 TurtleArt Studio · Learn Python through generative art</span><span>Built with Python + Flask + Turtle</span></footer></div>
+<script src="{{ url_for('static',filename='js/main.js') }}"></script>{% block scripts %}{% endblock %}</body></html>
